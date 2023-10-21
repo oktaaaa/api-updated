@@ -18,4 +18,13 @@ router.post('/', async(req, res) => {
     }
 })
 
+router.get('/', async(req, res)=>{
+    try {
+        const fakultas = await Fakultas.find()
+        res.json(fakultas)
+    } catch (error) {
+        res.json({message: error})
+    }
+})
+
 module.exports = router

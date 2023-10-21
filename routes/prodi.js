@@ -19,4 +19,14 @@ router.post('/', async(req, res) => {
     }
 })
 
+// get fakultas
+router.get('/', async(req, res)=>{
+    try {
+        const prodi = await Prodi.find()
+        res.json(prodi)
+    } catch (error) {
+        res.json({message: error})
+    }
+})
+
 module.exports = router
