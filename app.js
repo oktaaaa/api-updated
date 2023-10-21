@@ -15,10 +15,15 @@ app.use(bodyParser.json())
 // import routes
 const fakultasRoutes = require('./routes/fakultas')
 const prodiRoutes = require('./routes/prodi')
+const dosenRoutes = require('./routes/dosen')
+const mahasiswaRoutes = require('./routes/mahasiswa')
+
 
 // 8. put routes in express
 app.use('/fakultas', fakultasRoutes)
 app.use('/prodi', prodiRoutes)
+app.use('/dosen', dosenRoutes)
+app.use('/mahasiswa', mahasiswaRoutes)
 
 // 3. connect to database
 mongoose.connect(process.env.DB_CONNECTION, {

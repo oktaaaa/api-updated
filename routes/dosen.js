@@ -1,29 +1,30 @@
-// 5 buat route prodi
+// 5 buat route fakultas
 
 const express = require('express')
 const router = express.Router()
-const Prodi = require('../models/Prodi')
+const Dosen = require('../models/Dosen')
 
 
 // post fakultas
 router.post('/', async(req, res) => {
-    const dataProdi = new Prodi({
+    const dataDosen = new Dosen({
+        kode: req.body.kode,
         nama: req.body.nama,
-        fakultas: req.body.fakultas
+        prodi: req.body.prodi
     })
     try {
-        const prodi = await dataProdi.save()
-        res.json(prodi)
+        const dosen = await dataDosen.save()
+        res.json(dosen)
     } catch (error) {
         res.json({message: error})
     }
 })
 
-// get prodi
 router.get('/', async(req, res)=>{
     try {
-        const prodi = await Prodi.find().populate("fakultas")
-        res.json(prodi)
+        
+        const dosen = await Dosen.find().populate("prodi")
+        res.json(dosen)
     } catch (error) {
         res.json({message: error})
     }
