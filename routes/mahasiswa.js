@@ -26,7 +26,14 @@ router.post('/', async(req, res) => {
 // get prodi
 router.get('/', async(req, res)=>{
     try {
-        const mahasiswa = await Mahasiswa.find().populate("prodi").populate("dosenpa")
+        const mahasiswa = await Mahasiswa.find().populate({
+            path: 'prodi',
+            select: '_id nama',
+            populate:{
+                path:'fakultas',
+                select: '_id nama'
+            }
+        }).populate("dosenpa")
         res.json(mahasiswa)
     } catch (error) {
         res.json({message: error})

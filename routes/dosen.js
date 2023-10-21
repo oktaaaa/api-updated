@@ -23,7 +23,14 @@ router.post('/', async(req, res) => {
 router.get('/', async(req, res)=>{
     try {
         
-        const dosen = await Dosen.find().populate("prodi")
+        const dosen = await Dosen.find().populate({
+            path: 'prodi',
+            select: '_id nama',
+            populate:{
+                path:'fakultas',
+                select: '_id nama'
+            }
+        }).exec()
         res.json(dosen)
     } catch (error) {
         res.json({message: error})
