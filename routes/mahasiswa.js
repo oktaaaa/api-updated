@@ -52,4 +52,24 @@ router.delete('/:ID', async(req, res)=>{
     }
 })
 
+// edit
+router.put('/:ID', async(req, res) => {
+    const dataMahasiswa = {
+        npm: req.body.npm,
+        nama: req.body.nama,
+        jk: req.body.jk,
+        tanggal: req.body.tanggal,
+        prodi: req.body.prodi,
+        dosenpa: req.body.dosenpa
+    }
+    try {
+        const mahasiswa = await Mahasiswa.updateOne({
+            _id: req.params.ID
+        }, dataMahasiswa)
+        res.json(mahasiswa)
+    } catch (error) {
+        res.json({message: error})
+    }
+})
+
 module.exports = router
