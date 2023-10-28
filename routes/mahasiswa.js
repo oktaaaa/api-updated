@@ -23,8 +23,11 @@ router.post('/', async(req, res) => {
     }
 })
 
+// verifytoken
+const verifyToken = require('../config/verifyToken')
+
 // get prodi
-router.get('/', async(req, res)=>{
+router.get('/', verifyToken, async(req, res)=>{
     try {
         const mahasiswa = await Mahasiswa.find().populate({
             path: 'prodi',
