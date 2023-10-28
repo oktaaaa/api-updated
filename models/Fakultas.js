@@ -12,3 +12,4 @@ const FakultasSchema = mongoose.Schema({
 })
 
 module.exports = mongoose.model('Fakultas', FakultasSchema)
+// test
