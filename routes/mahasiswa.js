@@ -40,4 +40,16 @@ router.get('/', async(req, res)=>{
     }
 })
 
+// delete
+router.delete('/:ID', async(req, res)=>{
+    try {
+        const mahasiswa = await Mahasiswa.deleteOne({_id: req.params.ID})
+        res.json(mahasiswa)
+    } catch (error) {
+        res.json({
+            message: error
+        })
+    }
+})
+
 module.exports = router
